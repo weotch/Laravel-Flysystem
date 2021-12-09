@@ -51,7 +51,7 @@ class AwsS3Connector implements ConnectorInterface
     protected function getAuth(array $config)
     {
         if (!array_key_exists('key', $config) || !array_key_exists('secret', $config)) {
-            throw new InvalidArgumentException('The awss3 connector requires authentication.');
+            return array_only($config, ['region']);
         }
 
         if (array_key_exists('region', $config) && array_key_exists('base_url', $config)) {
